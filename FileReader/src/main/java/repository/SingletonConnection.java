@@ -1,7 +1,8 @@
 package repository;
 
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utility.PassEncoding;
 
 import java.sql.Connection;
@@ -10,36 +11,37 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * @author is M.nia
- * SingletonConnection is a class to create a database connection and uses ResourceBundle
- * class to manage resources.
+ * @author Mandana Soleimani Nia
+ * SingletonConnection is a class to create a database connection
+ * and uses ResourceBundle class to manage resources.
+ * Use singletone pattern to create just one connection
  */
 public class SingletonConnection {
     static String DB_URL = null;
     static String USER = null;
     static String PASS = null;
     private static Connection connection =null;
+    private static final Logger logger = LoggerFactory.getLogger(SingletonConnection.class);
     private SingletonConnection() {
     }
 
     /**
      * read database information from @see DB.properties
      * @return connection
-     * @throws SQLException
+     * @throws SQLException and ClassNotFoundException
      */
-    public static Connection getConnection() throws SQLException {
-        try {
+    public static Connection getConnection() throws SQLException,ClassNotFoundException {
+        logger.debug("start the connection method");
+
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("DB");
-        DB_URL = resourceBundle.getString("DB_URL");
-        USER = resourceBundle.getString("USER");
-        PASS = PassEncoding.decryption(resourceBundle.getString("PASS"));
-
-
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("DB");
+            DB_URL = resourceBundle.getString("DB_URL");
+            USER = resourceBundle.getString("USER");
+            PASS = PassEncoding.decryption(resourceBundle.getString("PASS"));
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            logger.debug("connected to DB successfully");
+
+
 
         return connection;
     }

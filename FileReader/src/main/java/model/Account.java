@@ -4,7 +4,7 @@ package model;
  * @author M.nia
  *this is a DTO class for account objects
  */
-public class AccountDTO {
+public class Account {
     private int recordNumber;
 
     public int getRecordNumber() {
@@ -24,7 +24,7 @@ public class AccountDTO {
     private String msg;
 
 
-    public AccountDTO(String accountNumber, String accountType, int accountCustomerId, String accountLimit, String accountOpenDate, String accountBalance) {
+    public Account(String accountNumber, String accountType, int accountCustomerId, String accountLimit, String accountOpenDate, String accountBalance) {
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.accountCustomerId = accountCustomerId;
@@ -33,12 +33,12 @@ public class AccountDTO {
         this.accountBalance = accountBalance;
     }
 
-    public AccountDTO() {
+    public Account() {
     }
 
     @Override
     public String toString() {
-        return "AccountDTO{" +
+        return "Account{" +
                 "accountNumber='" + accountNumber + '\'' +
                 ", accountType='" + accountType + '\'' +
                 ", accountCustomerId='" + accountCustomerId + '\'' +

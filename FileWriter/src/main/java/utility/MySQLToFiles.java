@@ -7,6 +7,8 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repository.SingletonConnection;
 
 import java.io.File;
@@ -20,155 +22,67 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Mandana Soleimani Nia
+ * MySQLToFiles is to read data from database and register them in a xml file and in a json file.
+ */
+
 public class MySQLToFiles {
+    private static final Logger logger= LoggerFactory.getLogger(MySQLToFiles.class);
 
-
-//    public  List<AccountDTO> getAccounts() {
-//        String query = "SELECT  * FROM ACCOUNT";
-//        List<AccountDTO> myRecords = new ArrayList<>();
-//        try {
-//            Connection connection = SingletonConnection.getConnection();
-//
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery(query);
-//
-//            while (resultSet.next()) {
-//                AccountDTO myRecord = new AccountDTO();
-//
-//                myRecord.setAccountNumber(resultSet.getString(1));
-//                myRecord.setAccountType(resultSet.getString(2));
-//                myRecord.setAccountCustomerId(resultSet.getInt(3));
-//                myRecord.setAccountLimit(resultSet.getString(4));
-//                myRecord.setAccountOpenDate(resultSet.getString(5));
-//                myRecord.setAccountBalance(resultSet.getString(6));
-//                myRecords.add(myRecord);
-//            }
-//
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return myRecords;
-//
-//    }
-
-    public  List<AccountDTO> getAccounts() {
-        String query = "SELECT  * FROM ACCOUNT";
-        List<AccountDTO> myRecords = new ArrayList<>();
-        try {
-            Connection connection = SingletonConnection.getConnection();
-
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                AccountDTO myRecord = new AccountDTO();
-                myRecord.setRecordNumber(resultSet.getInt(1));
-                myRecord.setAccountNumber(resultSet.getString(2));
-                myRecord.setAccountType(resultSet.getString(3));
-                myRecord.setAccountLimit(resultSet.getString(4));
-                myRecord.setAccountOpenDate(resultSet.getString(5));
-                myRecord.setAccountBalance(resultSet.getString(6));
-                myRecord.setAccountCustomerId(resultSet.getInt(7));
-                myRecords.add(myRecord);
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return myRecords;
-
-    }
-
-
-    public void writeAccountInJson(List<AccountDTO> myRecords) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("register.json");
-        try {
-            objectMapper.writeValue(file, myRecords);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public  void writeAccountInXml(List<AccountDTO> myRecords) {
-        Document doc = new Document();
-        Element root = new Element("accounts");
-        doc.setRootElement(root);
-        for (AccountDTO accountDTO : myRecords) {
-
-            Element accountNumberElement = new Element("accountNumber").
-                    setText(accountDTO.getAccountNumber());
-            Element accountTypeElement = new Element("accountType").
-                    setText(accountDTO.getAccountType());
-            Element accountCustomerIdElement = new Element("accountCustomerId").
-                    setText(""+accountDTO.getAccountCustomerId());
-            Element accountLimitElement = new Element("accountLimit").
-                    setText(accountDTO.getAccountLimit());
-            Element accountOpenDateElement = new Element("accountOpenDate").
-                    setText(accountDTO.getAccountOpenDate());
-            Element accountBalanceElement = new Element("accountBalance").
-                    setText(accountDTO.getAccountBalance());
-
-
-            root.addContent(accountNumberElement);
-            root.addContent(accountTypeElement);
-            root.addContent(accountCustomerIdElement);
-            root.addContent(accountLimitElement);
-            root.addContent(accountOpenDateElement);
-            root.addContent(accountBalanceElement);
-
-        }
-
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-
-        try {
-            xmlOutput.output(doc, new FileWriter("register.xml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-    /*public  List<CustomerDTO> getCustomers() {
-        String query = "SELECT  * FROM CUSTOMERS";
+    /**
+     * getCustomers connects to database and gets the customers within a joint query that their accountBalance is more than 1000.
+     * @return a list of customers
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public  List<CustomerDTO> getCustomers() throws SQLException, ClassNotFoundException {
+        logger.debug("getCustomers method called !");
+        String query = "select c.* from account a join customer c on a.account_customer_id = c.id\n" +
+                "         where a.account_balance>1000";
         List<CustomerDTO> myRecords = new ArrayList<>();
-        try {
-            Connection connection = SingletonConnection.getConnection();
 
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+        Connection connection = SingletonConnection.getConnection();
 
-            while (resultSet.next()) {
-                CustomerDTO myRecord = new CustomerDTO();
-                myRecord.setCustomerId(resultSet.getInt(1));
-                myRecord.setCustomerName(resultSet.getString(2));
-                myRecord.setCustomerSurName(resultSet.getString(3));
-                myRecord.setCustomerAddress(resultSet.getString(4));
-                myRecord.setCustomerZipCode(resultSet.getString(5));
-                myRecord.setCustomerNationalId(resultSet.getString(6));
-                myRecord.setCustomerBirthDate(resultSet.getString(7));
-                myRecords.add(myRecord);
-            }
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
 
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        while (resultSet.next()) {
+            CustomerDTO myRecord = new CustomerDTO();
+            myRecord.setCustomerId(resultSet.getInt(1));
+            myRecord.setCustomerName(resultSet.getString(2));
+            myRecord.setCustomerSurName(resultSet.getString(3));
+            myRecord.setCustomerAddress(resultSet.getString(4));
+            myRecord.setCustomerZipCode(resultSet.getString(5));
+            myRecord.setCustomerNationalId(resultSet.getString(6));
+            myRecord.setCustomerBirthDate(resultSet.getString(7));
+            myRecords.add(myRecord);
         }
+        logger.debug("reading data from database is completed and returned {}  records" , myRecords.size());
         return myRecords;
+    }
 
-    }*/
-    public void writeCustomerInJson(List<CustomerDTO> myRecords) {
+    /**
+     * the method writes a list of customers in a json file
+     * @param myRecords that is a list of customers
+     * @throws IOException
+     */
+
+    public void writeCustomerInJson(List<CustomerDTO> myRecords) throws IOException {
+        logger.debug("writeCustomerInJson method called !");
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("register.json");
-        try {
-            objectMapper.writeValue(file, myRecords);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        objectMapper.writeValue(file, myRecords);
+        logger.debug("writeCustomerInJson method completed !");
     }
-    public  void writeCustomerInXml(List<CustomerDTO> myRecords) {
+    /**
+     * the method writes a list of customers in a xml file
+     * @param myRecords that is a list of customers
+     * @throws IOException
+     */
+
+    public  void writeCustomerInXml(List<CustomerDTO> myRecords) throws IOException {
+        logger.debug("writeCustomerInXml method called !");
         Document doc = new Document();
         Element root = new Element("customers");
         doc.setRootElement(root);
@@ -199,49 +113,17 @@ public class MySQLToFiles {
             customerElement.addContent(customerBirthDateElement);
 
             root.addContent(customerElement);
-
-
         }
 
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        try {
             xmlOutput.output(doc, new FileWriter("register.xml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+            logger.debug("writeCustomerInXml method completed !");
     }
-    public  List<CustomerDTO> getCustomers() {
-        String query = "select c.* from account a join customer c on a.account_customer_id = c.id\n" +
-                "         where a.account_balance>1000";
-        List<CustomerDTO> myRecords = new ArrayList<>();
-        try {
-            Connection connection = SingletonConnection.getConnection();
-
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                CustomerDTO myRecord = new CustomerDTO();
-                myRecord.setCustomerId(resultSet.getInt(1));
-                myRecord.setCustomerName(resultSet.getString(2));
-                myRecord.setCustomerSurName(resultSet.getString(3));
-                myRecord.setCustomerAddress(resultSet.getString(4));
-                myRecord.setCustomerZipCode(resultSet.getString(5));
-                myRecord.setCustomerNationalId(resultSet.getString(6));
-                myRecord.setCustomerBirthDate(resultSet.getString(7));
-                myRecords.add(myRecord);
-            }
 
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return myRecords;
 
-    }
 
 
 }

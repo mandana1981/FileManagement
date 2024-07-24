@@ -2,6 +2,8 @@ package utility;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
+import java.util.ResourceBundle;
+
 /**
  * @author M.nia
  * this is a class for encryption
@@ -9,6 +11,10 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
  * has two methods for encryption and decryption,each method has the private key
  */
 public class PassEncoding {
+    static ResourceBundle resourceBundle=null;
+    static {
+         resourceBundle= ResourceBundle.getBundle("keys");
+    }
     /**
      * this is encryption method for system passwords
      * @param password as a plain text
@@ -16,7 +22,7 @@ public class PassEncoding {
      */
     public static String encryption(String password) {
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-        encryptor.setPassword("123456");
+        encryptor.setPassword(resourceBundle.getString("private.key"));
         String encryptedPassword = encryptor.encrypt(password);
         return encryptedPassword;
     }
@@ -29,10 +35,15 @@ public class PassEncoding {
 
     public static String decryption(String encryptedPass) {
         StandardPBEStringEncryptor decryptor = new StandardPBEStringEncryptor();
-        decryptor.setPassword("123456");
+        decryptor.setPassword(resourceBundle.getString("private.key"));
         String decryptedPassword = decryptor.decrypt(encryptedPass);
         return decryptedPassword;
     }
+
+//    public static void main(String[] args) {
+//        //System.out.println(encryption("123456"));
+//        System.out.println(decryption("HUcMkDWZB9B2yviLCblzXg=="));
+//    }
 
 
 

@@ -1,7 +1,7 @@
 package utility;
 
-import model.AccountDTO;
-import model.CustomerDTO;
+import model.Account;
+import model.Customer;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -16,89 +16,84 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author is M.nia
+ * @author Mandana Soleimani Nia
  * CSVReader is a class to raed data from two CSV files
  * @see CSVParser
  */
 
 public class CSVReader {
-    private static final String ACCOUNT_CSV_FILE_PATH = "src/main/resources/CSVFiles/account.csv";
-    private static final Logger logger = LoggerFactory.getLogger(WriteInJson.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(CSVReader.class);
+
 
     /**
      * accountCSVReader reads accounts from the CSV file and map it to an ArrayList
-
-     *@return a list called AccountDTO
+     *@return a list called Account
+     * @throws IOException
      */
 
-    public static List<AccountDTO> accountCSVReader() {
+    public static List<Account> accountCSVReader(String filePath) throws IOException {
+        logger.debug("start accountCSVReader method");
+        List<Account> accountList = new ArrayList<>();
 
-
-        List<AccountDTO> accountDTOList = new ArrayList<>();
-        logger.info("reading accountCSV file started");
-        try (Reader reader = Files.newBufferedReader(Paths.get(ACCOUNT_CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(filePath));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                         .withFirstRecordAsHeader()
                         .withIgnoreHeaderCase()
-                        .withTrim());) {
+                        .withTrim());
             for (CSVRecord csvRecord : csvParser) {
-                AccountDTO accountDTO = new AccountDTO();
-                accountDTO.setRecordNumber(Integer.parseInt(csvRecord.get(0)));
-                accountDTO.setAccountNumber(csvRecord.get(1));
-                accountDTO.setAccountType(csvRecord.get(2));
-                accountDTO.setAccountCustomerId(Integer.parseInt(csvRecord.get(3)));
-                accountDTO.setAccountLimit(csvRecord.get(4));
-                accountDTO.setAccountOpenDate(csvRecord.get(5));
-                accountDTO.setAccountBalance(csvRecord.get(6));
-                accountDTOList.add(accountDTO);
-                logger.debug("record is read : {} ", accountDTO);
-
+                Account account = new Account();
+                account.setRecordNumber(Integer.parseInt(csvRecord.get(0)));
+                account.setAccountNumber(csvRecord.get(1));
+                account.setAccountType(csvRecord.get(2));
+                account.setAccountCustomerId(Integer.parseInt(csvRecord.get(3)));
+                account.setAccountLimit(csvRecord.get(4));
+                account.setAccountOpenDate(csvRecord.get(5));
+                account.setAccountBalance(csvRecord.get(6));
+                accountList.add(account);
             }
-        } catch (IOException e) {
-            logger.error("error reading accountCSV file {} ",ACCOUNT_CSV_FILE_PATH);
-            throw new RuntimeException(e);
-        }
-        logger.info("reading accountCSV  completed");
-        return accountDTOList;
+            logger.debug("accountCSVReader {}  accounts is read " , accountList.size());
 
+
+
+        return accountList;
     }
 
-    private static final String CUSTOMER_CSV_FILE_PATH = "src/main/resources/CSVFiles/customer.csv";
+
 
     /**
      * customerCSVReader reads customers from the CSV file and map it to an ArrayList
-     * @return a list called CustomerDTO
+     * @return a list called Customer
+     * @throws IOException
      */
 
 
-    public static List<CustomerDTO> customerCSVReader() {
-        List<CustomerDTO> customerDTOList = new ArrayList<>();
-        logger.info("reading customerCSV file started ");
-        try (Reader reader = Files.newBufferedReader(Paths.get(CUSTOMER_CSV_FILE_PATH));
+    public static List<Customer> customerCSVReader(String filePath) throws IOException {
+        logger.debug("start customerCSVReader method");
+        List<Customer> customerList = new ArrayList<>();
+        Reader reader = Files.newBufferedReader(Paths.get(filePath));
 
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                      .withFirstRecordAsHeader()
                      .withIgnoreHeaderCase()
-                     .withTrim());) {
+                     .withTrim());
             for (CSVRecord csvRecord : csvParser) {
 
-                CustomerDTO customerDTO = new CustomerDTO();
-                customerDTO.setCustomerId(Integer.parseInt(csvRecord.get(1)));
-                customerDTO.setCustomerName(csvRecord.get(2));
-                customerDTO.setCustomerSurName(csvRecord.get(3));
-                customerDTO.setCustomerAddress(csvRecord.get(4));
-                customerDTO.setCustomerZipCode(csvRecord.get(5));
-                customerDTO.setCustomerNationalId(csvRecord.get(6));
-                customerDTO.setCustomerBirthDate(csvRecord.get(7));
-                customerDTOList.add(customerDTO);
-                logger.debug("record is read {}",customerDTO);
+                Customer customer = new Customer();
+                customer.setCustomerId(Integer.parseInt(csvRecord.get(1)));
+                customer.setCustomerName(csvRecord.get(2));
+                customer.setCustomerSurName(csvRecord.get(3));
+                customer.setCustomerAddress(csvRecord.get(4));
+                customer.setCustomerZipCode(csvRecord.get(5));
+                customer.setCustomerNationalId(csvRecord.get(6));
+                customer.setCustomerBirthDate(csvRecord.get(7));
+                customerList.add(customer);
             }
-        } catch (IOException e) {
-            logger.debug("error reading customerCSV file {} ",CUSTOMER_CSV_FILE_PATH);
-            throw new RuntimeException(e);
-        }
-        logger.info("reading customerCSV file completed");
-        return customerDTOList;
+            logger.debug("customerCSVReader is raed");
+
+
+        return customerList;
+
 
     }
 }
