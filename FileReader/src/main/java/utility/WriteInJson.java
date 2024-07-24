@@ -28,6 +28,7 @@ public class WriteInJson {
      */
 
     public static void writeInJson(String fileName,List list) throws IOException{
+
         logger.debug("start writeInJson method");
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(fileName);
