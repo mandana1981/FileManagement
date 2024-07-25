@@ -48,7 +48,7 @@ public class JobSchedule {
 //                    .build();
 
 
-            // CronTrigger the job to run on the every 20 seconds
+            // CronTrigger the job to run at 10am every day
             //CronTrigger : specifies start time, end time, running period of the job according to Unix cron expression.
             /*"10" - This represents the minute of the hour when the task should be executed. In this case, it's the 10th
             minute of every hour.
@@ -67,7 +67,7 @@ public class JobSchedule {
 
             CronTrigger cronTrigger = TriggerBuilder.newTrigger()
                     .withIdentity("crontrigger", "crontriggergroup1")
-                    .withSchedule(CronScheduleBuilder.cronSchedule("0 0 10,22 * * ?"))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0 0 10 * * ?"))
                     .build();
 
             logger.info("Scheduling job starts.");
