@@ -1,6 +1,5 @@
 package business;
 
-
 import model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +14,9 @@ import java.util.List;
  * Processor class is for calling methods to get data from database and write them via two threads in a xml
  * file and a json file.
  */
-public class Processor {
 
-    private static final Logger logger = LoggerFactory.getLogger(business.Processor.class);
+public class Processor {
+    private static final Logger logger = LoggerFactory.getLogger(Processor.class);
 
     public static void main(String[] args) {
         MySQLToFiles mySQLToFiles = new MySQLToFiles();

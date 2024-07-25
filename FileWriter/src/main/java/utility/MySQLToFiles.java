@@ -1,6 +1,7 @@
 package utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.Customer;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
