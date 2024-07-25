@@ -14,7 +14,7 @@ public class Customer {
     private String customerZipCode;
     private String customerNationalId;
     private String customerBirthDate;
-    private String msg;
+
 
 
     public int getCustomerId() {
@@ -73,11 +73,5 @@ public class Customer {
         this.customerBirthDate = customerBirthDate;
     }
 
-    public String getMsg() {
-        return msg;
-    }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }
