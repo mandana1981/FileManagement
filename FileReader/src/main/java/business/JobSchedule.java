@@ -32,7 +32,7 @@ public class JobSchedule {
 
         try {
 
-            // specify the job' s details..
+
             JobDetail job = JobBuilder.newJob(DataProcessorJob.class)
                     .withIdentity("DataProcessorJob")
                     .build();
