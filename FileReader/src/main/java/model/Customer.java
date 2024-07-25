@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @author M.nia
+ * @author Mandana Soleimani Nia
  *
  * this is a DTO class to describe customer objects
  */

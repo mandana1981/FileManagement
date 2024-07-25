@@ -25,7 +25,7 @@ public class RepositoryActions {
 
     public static void insertDBAccountBatch(List<Account> accountList) throws SQLException,ClassNotFoundException {
         logger.debug("batch insert to database for account is started for {} accounts", accountList.size());
-        String query = "insert into ACCOUNT  (id,account_number,account_type,account_customer_id,account_limit," +
+        String query = "insert into ACCOUNT  (record_number,account_number,account_type,account_customer_id,account_limit," +
                 "account_open_date,account_balance) values (?,?,?,?,?,?,?)";
 
 
