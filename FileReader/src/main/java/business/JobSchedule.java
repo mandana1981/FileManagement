@@ -25,8 +25,8 @@ import java.text.ParseException;
 
 public class JobSchedule {
     private static final Logger logger = LoggerFactory.getLogger(JobSchedule.class);
-    private static final String ACCOUNT_CSV_FILE_PATH = "src/main/resources/CSVFiles/account.csv";
-    private static final String CUSTOMER_CSV_FILE_PATH = "src/main/resources/CSVFiles/customer.csv";
+    private static final String ACCOUNT_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\account.csv";
+  private static final String CUSTOMER_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\customer.csv";
 
     public static void main(String[] args) {
 

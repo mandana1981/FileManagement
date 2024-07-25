@@ -1,20 +1,11 @@
 package model;
 
 /**
- * @author M.nia
- *this is a DTO class for account objects
+ * @author Mandana Soleimani Nia
+ *this is a class for account objects
  */
 public class Account {
     private int recordNumber;
-
-    public int getRecordNumber() {
-        return recordNumber;
-    }
-
-    public void setRecordNumber(int recordNumber) {
-        this.recordNumber = recordNumber;
-    }
-
     private String accountNumber;
     private String accountType;
     private int accountCustomerId;
@@ -24,7 +15,9 @@ public class Account {
     private String msg;
 
 
-    public Account(String accountNumber, String accountType, int accountCustomerId, String accountLimit, String accountOpenDate, String accountBalance) {
+    public Account(int recordNumber, String accountNumber, String accountType, int accountCustomerId, String accountLimit
+            , String accountOpenDate, String accountBalance) {
+        this.recordNumber = recordNumber;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.accountCustomerId = accountCustomerId;
@@ -39,13 +32,22 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountNumber='" + accountNumber + '\'' +
+                "recordNumber=" + recordNumber +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", accountType='" + accountType + '\'' +
-                ", accountCustomerId='" + accountCustomerId + '\'' +
+                ", accountCustomerId=" + accountCustomerId +
                 ", accountLimit='" + accountLimit + '\'' +
                 ", accountOpenDate='" + accountOpenDate + '\'' +
                 ", accountBalance='" + accountBalance + '\'' +
                 '}';
+    }
+
+    public int getRecordNumber() {
+        return recordNumber;
+    }
+
+    public void setRecordNumber(int recordNumber) {
+        this.recordNumber = recordNumber;
     }
 
     public String getAccountNumber() {

@@ -21,12 +21,12 @@ import java.util.List;
  */
 
 public class DataProcessor {
-    private static final String ACCOUNT_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles";
-    private static final String CUSTOMER_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles";
-    public static void main(String[] args) {
-        DataProcessor dataProcessor = new DataProcessor();
-        dataProcessor.getData(ACCOUNT_CSV_FILE_PATH, CUSTOMER_CSV_FILE_PATH);
-    }
+//    private static final String ACCOUNT_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\account.csv";
+//    private static final String CUSTOMER_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\customer.csv";
+//    public static void main(String[] args) {
+//        DataProcessor dataProcessor = new DataProcessor();
+//        dataProcessor.getData(ACCOUNT_CSV_FILE_PATH, CUSTOMER_CSV_FILE_PATH);
+//    }
 
 
     private static final Logger logger = LoggerFactory.getLogger(DataProcessor.class);
