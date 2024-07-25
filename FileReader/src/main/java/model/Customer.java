@@ -3,7 +3,7 @@ package model;
 /**
  * @author Mandana Soleimani Nia
  *
- * this is a DTO class to describe customer objects
+ * this is a class to describe customer objects
  */
 
 public class Customer {

@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * @author Mandana Soleimani Nia
+ *
+ * this is a class to describe customer objects
+ */
+
 public class Customer {
     private int customerId;
     private String customerName;

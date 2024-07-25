@@ -1,8 +1,10 @@
 package model;
 
+/**
+ * @author Mandana Soleimani Nia
+ *this is a class for account objects
+ */
 public class Account {
-
-
     private int recordNumber;
     private String accountNumber;
     private String accountType;
@@ -12,8 +14,9 @@ public class Account {
     private String accountBalance;
     private String msg;
 
+
     public Account(int recordNumber, String accountNumber, String accountType, int accountCustomerId, String accountLimit
-            , String accountOpenDate, String accountBalance, String msg) {
+            , String accountOpenDate, String accountBalance) {
         this.recordNumber = recordNumber;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
@@ -21,7 +24,6 @@ public class Account {
         this.accountLimit = accountLimit;
         this.accountOpenDate = accountOpenDate;
         this.accountBalance = accountBalance;
-        this.msg = msg;
     }
 
     public Account() {
@@ -30,14 +32,16 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountNumber='" + accountNumber + '\'' +
+                "recordNumber=" + recordNumber +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", accountType='" + accountType + '\'' +
-                ", accountCustomerId='" + accountCustomerId + '\'' +
+                ", accountCustomerId=" + accountCustomerId +
                 ", accountLimit='" + accountLimit + '\'' +
                 ", accountOpenDate='" + accountOpenDate + '\'' +
                 ", accountBalance='" + accountBalance + '\'' +
                 '}';
     }
+
     public int getRecordNumber() {
         return recordNumber;
     }
@@ -45,6 +49,7 @@ public class Account {
     public void setRecordNumber(int recordNumber) {
         this.recordNumber = recordNumber;
     }
+
     public String getAccountNumber() {
         return accountNumber;
     }

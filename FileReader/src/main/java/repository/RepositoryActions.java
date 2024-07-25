@@ -17,7 +17,7 @@ import java.util.List;
 public class RepositoryActions {
     private static final Logger logger= LoggerFactory.getLogger(RepositoryActions.class);
     /**
-     * inserts a list of AccountDTOs to a table in database called ACCOUNT
+     * inserts a list of Accounts to a table in database called ACCOUNT
      * @param accountList a list of account objects
      * @throws SQLException,ClassNotFoundException
      */
@@ -49,7 +49,7 @@ public class RepositoryActions {
     }
 
     /**
-     * inserts a list of CustomerDTOs to a table in database called CUSTOMER
+     * inserts a list of Customers to a table in database called CUSTOMER
      * @param customerList a list of customer objects
      * @throws SQLException,ClassNotFoundException
      */
