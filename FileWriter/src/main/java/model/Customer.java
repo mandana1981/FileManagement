@@ -1,6 +1,6 @@
 package model;
 
-public class CustomerDTO {
+public class Customer {
     private int customerId;
     private String customerName;
     private String customerSurName;

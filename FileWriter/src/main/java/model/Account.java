@@ -1,6 +1,6 @@
 package model;
 
-public class AccountDTO {
+public class Account {
 
 
     private int recordNumber;
@@ -12,7 +12,7 @@ public class AccountDTO {
     private String accountBalance;
     private String msg;
 
-    public AccountDTO(int recordNumber, String accountNumber, String accountType, int accountCustomerId, String accountLimit
+    public Account(int recordNumber, String accountNumber, String accountType, int accountCustomerId, String accountLimit
             , String accountOpenDate, String accountBalance, String msg) {
         this.recordNumber = recordNumber;
         this.accountNumber = accountNumber;
@@ -24,12 +24,12 @@ public class AccountDTO {
         this.msg = msg;
     }
 
-    public AccountDTO() {
+    public Account() {
     }
 
     @Override
     public String toString() {
-        return "AccountDTO{" +
+        return "Account{" +
                 "accountNumber='" + accountNumber + '\'' +
                 ", accountType='" + accountType + '\'' +
                 ", accountCustomerId='" + accountCustomerId + '\'' +

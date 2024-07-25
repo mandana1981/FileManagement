@@ -1,8 +1,7 @@
 package utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.AccountDTO;
-import model.CustomerDTO;
+import model.Customer;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -36,11 +35,11 @@ public class MySQLToFiles {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public  List<CustomerDTO> getCustomers() throws SQLException, ClassNotFoundException {
+    public  List<Customer> getCustomers() throws SQLException, ClassNotFoundException {
         logger.debug("getCustomers method called !");
         String query = "select c.* from account a join customer c on a.account_customer_id = c.id\n" +
                 "         where a.account_balance>1000";
-        List<CustomerDTO> myRecords = new ArrayList<>();
+        List<Customer> myRecords = new ArrayList<>();
 
         Connection connection = SingletonConnection.getConnection();
 
@@ -48,7 +47,7 @@ public class MySQLToFiles {
         ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
-            CustomerDTO myRecord = new CustomerDTO();
+            Customer myRecord = new Customer();
             myRecord.setCustomerId(resultSet.getInt(1));
             myRecord.setCustomerName(resultSet.getString(2));
             myRecord.setCustomerSurName(resultSet.getString(3));
@@ -68,7 +67,7 @@ public class MySQLToFiles {
      * @throws IOException
      */
 
-    public void writeCustomerInJson(List<CustomerDTO> myRecords) throws IOException {
+    public void writeCustomerInJson(List<Customer> myRecords) throws IOException {
         logger.debug("writeCustomerInJson method called !");
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("register.json");
@@ -81,28 +80,28 @@ public class MySQLToFiles {
      * @throws IOException
      */
 
-    public  void writeCustomerInXml(List<CustomerDTO> myRecords) throws IOException {
+    public  void writeCustomerInXml(List<Customer> myRecords) throws IOException {
         logger.debug("writeCustomerInXml method called !");
         Document doc = new Document();
         Element root = new Element("customers");
         doc.setRootElement(root);
-        for (CustomerDTO customerDTO : myRecords) {
+        for (Customer customer : myRecords) {
             Element customerElement = new Element("customer");
 
             Element customerIdElement = new Element("customerId").
-                    setText(""+customerDTO.getCustomerId());
+                    setText(""+ customer.getCustomerId());
             Element customerNameElement = new Element("customerName").
-                    setText(customerDTO.getCustomerName());
+                    setText(customer.getCustomerName());
             Element customerSurNameElement = new Element("customerSurName").
-                    setText(customerDTO.getCustomerSurName());
+                    setText(customer.getCustomerSurName());
             Element customerAddressElement = new Element("customerAddress").
-                    setText(""+customerDTO.getCustomerAddress());
+                    setText(""+ customer.getCustomerAddress());
             Element customerZipCodeElement = new Element("customerZipCode").
-                    setText(customerDTO.getCustomerZipCode());
+                    setText(customer.getCustomerZipCode());
             Element customerNationalIdElement = new Element("customerNationalId").
-                    setText(customerDTO.getCustomerNationalId());
+                    setText(customer.getCustomerNationalId());
             Element customerBirthDateElement = new Element("customerBirthDate").
-                    setText(customerDTO.getCustomerBirthDate());
+                    setText(customer.getCustomerBirthDate());
 
             customerElement.addContent(customerIdElement);
             customerElement.addContent(customerNameElement);

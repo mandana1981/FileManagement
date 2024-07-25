@@ -1,6 +1,6 @@
 package business;
 
-import model.CustomerDTO;
+import model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utility.MySQLToFiles;
@@ -21,13 +21,13 @@ public class Processor {
     public static void main(String[] args) {
         MySQLToFiles mySQLToFiles = new MySQLToFiles();
         try {
-            List<CustomerDTO> customerDTOList = mySQLToFiles.getCustomers();
+            List<Customer> customerList = mySQLToFiles.getCustomers();
             Thread thread1 = new Thread() {
                 @Override
                 public void run() {
 
                     try {
-                        mySQLToFiles.writeCustomerInJson(customerDTOList);
+                        mySQLToFiles.writeCustomerInJson(customerList);
                     } catch (IOException e) {
                         logger.error("could not write in json file " + e.getMessage());
                     }
@@ -40,7 +40,7 @@ public class Processor {
                 public void run() {
 
                     try {
-                        mySQLToFiles.writeCustomerInXml(customerDTOList);
+                        mySQLToFiles.writeCustomerInXml(customerList);
                     } catch (IOException e) {
                         logger.error("could not write in xml file " + e.getMessage());
                     }
