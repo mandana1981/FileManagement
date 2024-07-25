@@ -34,7 +34,7 @@ public class SingletonConnection {
      */
     public static Connection getConnection() throws SQLException,ClassNotFoundException {
         logger.debug("start the connection method");
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("DB");
         DB_URL = resourceBundle.getString("DB_URL");
