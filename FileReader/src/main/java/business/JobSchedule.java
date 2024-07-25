@@ -17,7 +17,7 @@ import java.text.ParseException;
  * TriggerBuilder – used to build Trigger
  * -----------------------------------------------------------------------
  * The JobSchedule class is using Job to run the main task of the project.
- * The trigger  and cronTrigger are used to show the time to run the job
+ * trigger  and cronTrigger are used to show the time to run the job
  * @see  StdSchedulerFactory
  *
  */
@@ -37,9 +37,10 @@ public class JobSchedule {
                     .withIdentity("DataProcessorJob")
                     .build();
 
-            // specify the running period of the job
-            //Trigger : specifies start time, end time, running period of the job schedules a task to execute every 120
-            // seconds indefinitely.
+
+            //Trigger specifies start time, end time, running period of the job .In this code trigger schedules
+            // a task to execute every 120 seconds
+
 
 //            Trigger trigger = TriggerBuilder.newTrigger()
 //                    .withSchedule(SimpleScheduleBuilder.simpleSchedule()
@@ -48,22 +49,10 @@ public class JobSchedule {
 //                    .build();
 
 
-            // CronTrigger the job to run at 10am every day
-            //CronTrigger : specifies start time, end time, running period of the job according to Unix cron expression.
-            /*"10" - This represents the minute of the hour when the task should be executed. In this case, it's the 10th
-            minute of every hour.
-            "*" (first asterisk) - This represents the hour of the day. The asterisk means "every hour," so the task will
-            be executed at the 10th minute of every hour.
-            "*" (second asterisk) - This represents the day of the month. The asterisk means "every day," so the task will
-            be executed at the 10th minute of every hour,
-            every day of the month.
-            "*" (third asterisk) - This represents the month of the year. The asterisk means "every month," so the task will
-            be executed at the 10th minute of every hour, every day, every month.
-            "*" (fourth asterisk) - This represents the day of the week. The asterisk means "every day of the week," so the
-            task will be executed at the 10th minute of every hour,
-            every day, every month, regardless of the day of the week.
-            In summary, the cron expression "10 * * * *" means that the task will be executed at the 10th minute of every
-            hour,every day, every month, and every day of the week.*/
+
+            //CronTrigger : specifies start time, end time, running period of the job and with "0 0 10 * * ?" the jub
+            //will run every day at 10am
+
 
             CronTrigger cronTrigger = TriggerBuilder.newTrigger()
                     .withIdentity("crontrigger", "crontriggergroup1")
