@@ -9,7 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Mandana Soleimani Nia
@@ -47,8 +50,11 @@ public class WriteInJson {
      */
     public static void writeInJson(List<Account> wrongAccountList, List<Customer> wrongCustomerList) throws IOException {
         logger.debug("start writeInJson method for wrong account list and wrong customer list ");
-        writeInJson("wrongAccount",wrongAccountList);
-        writeInJson("wrongCustomer",wrongCustomerList);
+        List<Object> mergedList = Stream.concat(wrongAccountList.stream(),wrongCustomerList.stream()).
+                collect(Collectors.toList());
+        writeInJson("error.json",mergedList);
+//        writeInJson("wrongAccount",wrongAccountList);
+//        writeInJson("wrongCustomer",wrongCustomerList);
 
             logger.debug("JSON file for wrong accounts and wrong customers is created successfully");
 
