@@ -89,7 +89,7 @@ public class CSVReader {
                 customer.setCustomerBirthDate(csvRecord.get(7));
                 customerList.add(customer);
             }
-            logger.debug("customerCSVReader is raed");
+            logger.debug("customerCSVReader {}  customers is raed ", customerList.size());
 
 
         return customerList;
