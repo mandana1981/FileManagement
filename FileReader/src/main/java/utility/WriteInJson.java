@@ -2,6 +2,7 @@ package utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import exception.WriteFileException;
 import model.Account;
 import model.Customer;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class WriteInJson {
      * @throws IOException
      */
 
-    public static void writeInJson(String fileName,List list) throws IOException{
+    public static void writeInJson(String fileName,List list) throws IOException {
 
         logger.debug("start writeInJson method");
         ObjectMapper objectMapper = new ObjectMapper();

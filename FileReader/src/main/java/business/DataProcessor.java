@@ -156,9 +156,10 @@ public class DataProcessor {
             }
 
         } catch (IOException e) {
+            //logger.error("Error dealing with the file", e.getMessage());
             logger.error("Error while reading CSV file !!! " + e.getMessage());
         }
-        //catch(X ex){
+       // catch(W ex){
 
        // }
 
