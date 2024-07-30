@@ -168,7 +168,6 @@ public class DataProcessor {
 
     /**
      * Validates the given account details in the Account object
-     *
      * @param account object containing account details to be validated
      * @return a validation message as a String.The message contains error descriptions for all the invalid fields
      */
@@ -229,7 +228,6 @@ public class DataProcessor {
 
     /**
      * Validates the given customer details in the Customer object
-     *
      * @param customer object containing customer details to be validated
      * @return a validation message as a String.The message contains error descriptions for all the invalid fields
      */
