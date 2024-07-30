@@ -21,12 +21,12 @@ import java.util.List;
  */
 
 public class DataProcessor {
-//    private static final String ACCOUNT_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\account.csv";
-//    private static final String CUSTOMER_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\customer.csv";
-//    public static void main(String[] args) {
-//        DataProcessor dataProcessor = new DataProcessor();
-//        dataProcessor.getData(ACCOUNT_CSV_FILE_PATH, CUSTOMER_CSV_FILE_PATH);
-//    }
+    private static final String ACCOUNT_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\account.csv";
+    private static final String CUSTOMER_CSV_FILE_PATH = "E:\\JavaProjects\\semas\\FileManagement\\FileReader\\src\\main\\resources\\CSVFiles\\customer.csv";
+    public static void main(String[] args) {
+        DataProcessor dataProcessor = new DataProcessor();
+        dataProcessor.getData(ACCOUNT_CSV_FILE_PATH, CUSTOMER_CSV_FILE_PATH);
+    }
 
 
     private static final Logger logger = LoggerFactory.getLogger(DataProcessor.class);
@@ -159,9 +159,9 @@ public class DataProcessor {
             //logger.error("Error dealing with the file", e.getMessage());
             logger.error("Error while reading CSV file !!! " + e.getMessage());
         }
-       // catch(W ex){
+        // catch(W ex){
 
-       // }
+        // }
 
 
     }
@@ -221,8 +221,9 @@ public class DataProcessor {
                 msg += " null account customer id ";
             }
         }
-
-        logger.trace("Validate msg is: {} ->for accountDto.number is {}", msg, account.getAccountNumber());
+        if (!msg.isEmpty()) {
+            logger.trace("Validate msg is: {} ->for accountDto.number is {}", msg, account.getAccountNumber());
+        }
         return msg;
     }
 
