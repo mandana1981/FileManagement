@@ -1,5 +1,6 @@
 package ca.sematec.utility;
 
+import ca.sematec.exception.WriteFileException;
 import ca.sematec.model.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -29,15 +30,19 @@ public class WriteInJson {
      * @throws IOException
      */
 
-    public static void writeInJson(String fileName,List list) throws IOException {
+    public static void writeInJson(String fileName,List list) {
 
         logger.debug("start writeInJson method");
-        ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File(fileName);
 
-        ObjectNode rootNode = objectMapper.createObjectNode();
-        rootNode.putPOJO(fileName,list);
-        objectMapper.writeValue(file, rootNode);
+            ObjectMapper objectMapper = new ObjectMapper();
+            File file = new File(fileName);
+try{
+            ObjectNode rootNode = objectMapper.createObjectNode();
+            rootNode.putPOJO(fileName, list);
+            objectMapper.writeValue(file, rootNode);
+        }catch (Exception e){
+            throw new WriteFileException(e.getMessage());
+        }
             logger.debug("JSON file created successfully: " + file.getAbsolutePath());
 
     }

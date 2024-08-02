@@ -1,5 +1,6 @@
 package ca.sematec.business;
 
+import ca.sematec.exception.WriteFileException;
 import ca.sematec.model.Account;
 import ca.sematec.model.Customer;
 import org.slf4j.Logger;
@@ -156,14 +157,12 @@ public class DataProcessor {
             }
 
         } catch (IOException e) {
-            //logger.error("Error dealing with the file", e.getMessage());
+
             logger.error("Error while reading CSV file !!! " + e.getMessage());
         }
-        // catch(W ex){
-
-        // }
-
-
+         catch(WriteFileException ex){
+            logger.error("Error while writing in a json file !!!"+ex.getMessage());
+        }
     }
 
     /**
