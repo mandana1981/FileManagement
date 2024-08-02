@@ -1,4 +1,4 @@
-package business;
+package ca.sematec.business;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;

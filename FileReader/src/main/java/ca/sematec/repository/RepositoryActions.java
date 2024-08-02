@@ -1,7 +1,7 @@
-package repository;
+package ca.sematec.repository;
 
-import model.Account;
-import model.Customer;
+import ca.sematec.model.Account;
+import ca.sematec.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,7 +1,7 @@
-package utility;
+package ca.sematec.utility;
 
-import model.Account;
-import model.Customer;
+import ca.sematec.model.Account;
+import ca.sematec.model.Customer;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

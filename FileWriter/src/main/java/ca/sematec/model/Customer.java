@@ -1,4 +1,4 @@
-package model;
+package ca.sematec.model;
 
 /**
  * @author Mandana Soleimani Nia

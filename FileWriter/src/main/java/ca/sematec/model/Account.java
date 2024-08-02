@@ -1,4 +1,4 @@
-package model;
+package ca.sematec.model;
 
 /**
  * @author Mandana Soleimani Nia
@@ -12,7 +12,7 @@ public class Account {
     private String accountLimit;
     private String accountOpenDate;
     private String accountBalance;
-    private String msg;
+
 
 
     public Account(int recordNumber, String accountNumber, String accountType, int accountCustomerId, String accountLimit
@@ -99,11 +99,7 @@ public class Account {
     }
 
 
-    public String getMsg() {
-        return msg;
-    }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+
+
 }

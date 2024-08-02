@@ -1,16 +1,14 @@
-package utility;
+package ca.sematec.utility;
 
+import ca.sematec.model.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import exception.WriteFileException;
-import model.Account;
-import model.Customer;
+import ca.sematec.model.Account;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

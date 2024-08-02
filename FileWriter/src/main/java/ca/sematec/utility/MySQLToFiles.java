@@ -1,14 +1,14 @@
-package utility;
+package ca.sematec.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Customer;
+import ca.sematec.model.Customer;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import repository.SingletonConnection;
+import ca.sematec.repository.SingletonConnection;
 
 import java.io.File;
 import java.io.FileWriter;

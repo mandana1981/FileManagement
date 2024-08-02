@@ -1,4 +1,4 @@
-package utility;
+package ca.sematec.utility;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 

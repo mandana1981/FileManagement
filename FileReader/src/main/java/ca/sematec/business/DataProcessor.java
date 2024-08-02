@@ -1,12 +1,12 @@
-package business;
+package ca.sematec.business;
 
-import model.Account;
-import model.Customer;
+import ca.sematec.model.Account;
+import ca.sematec.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import repository.RepositoryActions;
-import utility.CSVReader;
-import utility.WriteInJson;
+import ca.sematec.repository.RepositoryActions;
+import ca.sematec.utility.CSVReader;
+import ca.sematec.utility.WriteInJson;
 
 import java.io.IOException;
 import java.sql.SQLException;
