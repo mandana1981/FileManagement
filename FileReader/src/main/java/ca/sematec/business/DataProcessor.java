@@ -147,14 +147,10 @@ public class DataProcessor {
 
 
             //4- insert incorrect data into json file
-            try {
+
                 WriteInJson.writeInJson(wrongAccountList, wrongCustomerList);
                 logger.info(" count of wrong account {} / count of wrong customers {}  are saved in \"error.json\" file ",
                         wrongAccountList.size(), wrongCustomerList.size());
-            } catch (IOException e) {
-                logger.error("Error writing wrong accounts and customers in json file", e.getMessage());
-
-            }
 
         } catch (IOException e) {
 
