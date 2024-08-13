@@ -134,6 +134,7 @@ public class DataProcessor {
             } catch (SQLException | ClassNotFoundException e) {
                 logger.error("Error inserting customer into db customerList", e.getMessage());
                 WriteInJson.writeInJson("correctCustomer", correctCustomerList);
+                logger.trace("If inserting to DB is not possible,write the data temporarily in a json file");
             }
 
 
@@ -143,6 +144,7 @@ public class DataProcessor {
             } catch (SQLException | ClassNotFoundException e) {
                 logger.error("Error inserting account into db accountList", e.getMessage());
                 WriteInJson.writeInJson("correctAccount", correctAccountList);
+                logger.trace("If inserting to DB is not possible,write the data temporarily in a json file");
             }
 
 
